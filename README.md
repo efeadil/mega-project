@@ -33,12 +33,19 @@ git clone [https://github.com/efeadil/mega-project.git](https://github.com/efead
 cd mega-project
 ```
 
-### 2. Install Dependencies
-```bash
-pip install -r requirements.txt
+### 2. Install uv (one-time)
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -Command "irm https://astral.sh/uv/install.ps1 | iex"
 ```
+> Windows PowerShell already includes `irm` (Invoke-RestMethod). On macOS/Linux you can run `curl -LsSf https://astral.sh/uv/install.sh | sh` instead.
 
-### 3. Google Sheets Configuration (Database)
+### 3. Sync Dependencies
+```bash
+uv sync
+```
+This installs everything declared in `pyproject.toml` into an isolated `.venv/` folder and writes a reproducible `uv.lock`. Re-run `uv sync` whenever you pull new dependencies.
+
+### 4. Google Sheets Configuration (Database)
 The project utilizes Google Sheets as a relational database. To replicate the environment:
 
 1.  Create a new **Google Sheet**.
@@ -86,7 +93,7 @@ SPREADSHEET_NAME=Your_Google_Sheet_Name
 After completing the setup, run the bot with:
 
 ```bash
-python main.py
+uv run python main.py
 ```
 
 When you see **`Bot working...`** in the console, the bot is up and running! 🚀
@@ -105,12 +112,12 @@ When you see **`Bot working...`** in the console, the bot is up and running! �
 
 ```plaintext
 📦 MegaProject
- ┣ 📜 main.py              # Main bot logic & entry point
- ┣ 📜 credentials.json     # Google Cloud Service Account key (gitignored)
- ┣ 📜 .env                 # Environment variables & API keys (gitignored)
- ┣ 📜 .gitignore           # Prevents sensitive files from being committed
- ┣ 📜 requirements.txt     # Python dependencies
- ┗ 📜 README.md            # You are here :)
+┣ 📜 main.py              # Main bot logic & entry point
+┣ 📜 pyproject.toml       # uv/PEP 621 project definition & deps
+┣ 📜 credentials.json     # Google Cloud Service Account key (gitignored)
+┣ 📜 .env                 # Environment variables & API keys (gitignored)
+┣ 📜 .gitignore           # Prevents sensitive files from being committed
+┗ 📜 README.md            # You are here :)
 ```
 
 ---

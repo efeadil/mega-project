@@ -1,0 +1,17 @@
+[project]
+name = "megaproject"
+version = "0.1.0"
+description = "AI-powered Telegram assistant using Gemini and Google Sheets"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "google-generativeai",
+    "gspread",
+    "oauth2client",
+    "python-telegram-bot",
+    "python-dotenv",
+    "pillow",
+]
+
+[tool.uv]
+managed = true

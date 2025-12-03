@@ -180,9 +180,15 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         append_history(user_id, "Bot", reply_text)
 
         # --- LOGLAMA ---
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         user_name = update.effective_user.first_name or ""
-        logs_sheet.append_row([now, str(user_id), user_name, user_message or "", reply_text or ""])
+        logs_sheet.append_row([
+            timestamp,
+            str(user_id),
+            user_name,
+            user_message or "",
+            reply_text or "",
+        ])
         
     except Exception as e:
         await update.message.reply_text("An error occurred, please try again.")
