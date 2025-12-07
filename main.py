@@ -161,7 +161,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         await context.bot.send_chat_action(chat_id=update.effective_chat.id, action='typing')
         
-        prompt = "You are a helpful bot. and engilsh answer ."
+        prompt = "You are a helpful bot. and  answer ."
         if history_text:
             prompt += f"\nSon konuşmalardan alıntılar:\n{history_text}"
         prompt += f"\nKullanıcının yeni sorusu: {user_message}"
